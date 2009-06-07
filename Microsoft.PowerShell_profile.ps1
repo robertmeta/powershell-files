@@ -76,3 +76,4 @@ function prompt {
     write-host -nonewline -foregroundcolor magenta "$"
     return " "
 }
+# vim: set ft=ps1:
