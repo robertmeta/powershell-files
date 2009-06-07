@@ -20,6 +20,16 @@ $logs = "C:\inetpub\logs\*.log"
 $d = $downloads
 $p = $personal
 
+function svn_update {
+    foreach ($d in $(ls)) {
+        if ($d.psiscontainer) {
+            svn info $d;
+            svn update $d;
+            svn status $d;
+        }
+    }
+}
+
 function hosts {
     gvim_exe C:\Windows\system32\drivers\etc\hosts
 }
