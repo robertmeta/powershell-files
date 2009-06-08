@@ -11,6 +11,7 @@ $documents = "c:\users\rmelton\documents\"
 $oddsnends = "c:\program files\odds-n-ends"
 $ep = "c:\users\rmelton\projects\ep"
 $personal = "c:\users\rmelton\projects\personal"
+$other = "c:\users\rmelton\projects\other"
 $soa = "c:\users\rmelton\projects\ep\soa"
 $config = "c:\users\rmelton\projects\EP\_configs\"
 $stage = "\\192.168.30.201\c$\inetpub"
@@ -19,6 +20,7 @@ $logs = "C:\inetpub\logs\*.log"
 # so lazy
 $d = $downloads
 $p = $personal
+$o = $other
 
 function svn_update {
     foreach ($d in $(ls)) {
@@ -48,7 +50,11 @@ function mysql_local {
 
 # Always use one window for gvim from PS
 function gvim {
-    gvim_exe --remote-silent $args
+    if ($args) {
+        gvim_exe --remote-silent $args
+    } else {
+        gvim_exe
+    }
 }
 
 # USAGE: gvimit *.php,*.html
