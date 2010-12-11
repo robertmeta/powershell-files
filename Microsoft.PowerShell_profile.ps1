@@ -1,26 +1,30 @@
 # This is a fairly dodgy and person powershell profile, 
 # probably best you not use too much of, just pick and choose 
 # if anything :) 
-set-executionpolicy unrestricted
-set-alias vim "c:\program files\vim\vim72\vim.exe"
-set-alias gvim_exe "c:\program files\vim\vim72\gvim.exe"
+# set-executionpolicy unrestricted
+set-alias vim "c:\program files\vim\vim73\vim.exe"
+set-alias gvim_exe "c:\program files\vim\vim73\gvim.exe"
 set-alias iis "c:\windows\system32\inetsrv\InetMgr.exe"
+set-alias mysql "C:\Program Files (x86)\wamp\bin\mysql\mysql5.1.36\bin\mysql.exe"
+set-alias mysqladmin "C:\Program Files (x86)\wamp\bin\mysql\mysql5.1.36\bin\mysqladmin.exe"
 
+$aln = "c:\Users\rmelton\Projects\ALN\aln\"
 $downloads = "c:\users\rmelton\downloads\"
 $documents = "c:\users\rmelton\documents\"
-$oddsnends = "c:\program files\odds-n-ends"
-$ep = "c:\users\rmelton\projects\ep"
+$ep = "c:\users\rmelton\projects\ep\"
 $personal = "c:\users\rmelton\projects\personal"
-$other = "c:\users\rmelton\projects\other"
-$soa = "c:\users\rmelton\projects\ep\soa"
-$config = "c:\users\rmelton\projects\EP\_configs\"
-$stage = "\\192.168.30.201\c$\inetpub"
+$other = "c:\users\rmelton\projects\other\"
 $logs = "C:\inetpub\logs\*.log"
+$www = "C:\Program Files (x86)\wamp\www"
 
 # so lazy
 $d = $downloads
 $p = $personal
 $o = $other
+
+function up {
+    cd ..
+}
 
 function svn_update {
     foreach ($d in $(ls)) {
@@ -32,21 +36,20 @@ function svn_update {
     }
 }
 
+function www {
+    cd $www
+}
+
 function hosts {
     gvim_exe C:\Windows\system32\drivers\etc\hosts
 }
 
-function mysql_sql02 {
-    mysql -uroot -p -h ep2k3sql02 $args
+function rm-rf {
+    if ($args) {
+        rm -re -fo $args
+    }
 }
 
-function mysql_stage {
-    mysql -uroot -p -h 172.20.20.22 $args
-}
-
-function mysql_local {
-    mysql -uroot -p -h localhost $args
-}
 
 # Always use one window for gvim from PS
 function gvim {
@@ -81,7 +84,7 @@ function prompt {
     if ( $wp.isinrole("administrators") -eq 1 ) {
         write-host -nonewline -foregroundcolor red $username
     } else {
-        write-host -nonewline -foregroundcolor yellow $username
+        write-host -nonewline -foregroundcolor red $username
     }
 
     write-host -nonewline -foregroundcolor white "."
