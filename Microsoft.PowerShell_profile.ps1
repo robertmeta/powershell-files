@@ -2,29 +2,24 @@
 # probably best you not use too much of, just pick and choose 
 # if anything :) 
 # set-executionpolicy unrestricted
-set-alias vim "c:\program files (x86)\vim\vim73\vim.exe"
-set-alias gvim_exe "c:\program files (x86)\vim\vim73\gvim.exe"
+
+set-alias gvim_exe "c:\program files (x86)\vim\vim74\gvim.exe"
 set-alias iis "c:\windows\system32\inetsrv\InetMgr.exe"
 
-$downloads = "c:\users\rmelton\downloads\"
-$documents = "c:\users\rmelton\documents\"
-$personal = "c:\users\rmelton\projects\personal"
+$downloads = "C:\Users\Robert\Downloads\"
+$documents = "C:\Users\Robert\documents\"
+$personal = "C:\Users\Robert\Projects"
 
 # so lazy
 $d = $downloads
 $p = $personal
-$o = $other
 
 function up {
     cd ..
 }
 
 function hosts {
-    gvim_exe C:\Windows\system32\drivers\etc\hosts
-}
-
-function gopath {
-    $env:GOPATH = $pwd
+    vim C:\Windows\system32\drivers\etc\hosts
 }
 
 function rm-rf {
@@ -77,4 +72,5 @@ function prompt {
     write-host -nonewline -foregroundcolor magenta "$"
     return " "
 }
+
 # vim: set ft=ps1:
